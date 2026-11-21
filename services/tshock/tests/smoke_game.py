@@ -1,4 +1,4 @@
-"""Real Terraria 1.4.5.8 password handshake against a loopback Docker test."""
+"""Real Terraria 1.4.5.8 password handshake against a Docker or Railway test."""
 import os
 import socket
 import struct
@@ -31,18 +31,14 @@ def exact(sock, count):
 
 
 def receive(sock):
-    length, kind = struct.unpack('<HB', exact(sock, 3))
-    return kind, exact(sock, length - 3)
-
-
-def receive(sock):
     header = exact(sock, 3)
     length, kind = struct.unpack('<HB', header)
     return kind, exact(sock, length - 3)
 
 
 def check(password, expected):
-    with socket.create_connection(('127.0.0.1', int(os.environ.get('GAME_TEST_PORT', '17777'))), timeout=10) as sock:
+    address = (os.environ.get('GAME_TEST_HOST', '127.0.0.1'), int(os.environ.get('GAME_TEST_PORT', '17777')))
+    with socket.create_connection(address, timeout=10) as sock:
         send(sock, 1, net_string('Terraria326'))
         kind, payload = receive(sock)
         assert kind == 3, f'Expected slot assignment, got {kind}'
