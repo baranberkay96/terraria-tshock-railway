@@ -1,0 +1,31 @@
+{
+  "name": "Terraria TShock Server",
+  "description": "Password-protected Terraria 1.4.5.8 server with persistent worlds.",
+  "category": "Other",
+  "tags": ["terraria", "tshock", "game-server", "multiplayer"],
+  "image": "https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/terraria.png",
+  "services": {
+    "Terraria": {
+      "icon": "https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/terraria.png",
+      "source": {"repo": "baranberkay96/terraria-tshock-railway", "rootDirectory": "/services/tshock"},
+      "healthcheckPath": "/health",
+      "healthcheckTimeout": 1200,
+      "restartPolicyType": "ALWAYS",
+      "publicDomain": false,
+      "targetPort": 8080,
+      "tcpProxy": 7777,
+      "volume": {"mountPath": "/data"},
+      "variables": {
+        "PORT": {"defaultValue": "8080", "description": "Private readiness HTTP port; keep 8080, with no public HTTP domain.", "required": false},
+        "SERVER_PASSWORD": {"defaultValue": "${{secret(32)}}", "description": "Generated game join password; use 16–128 printable ASCII characters when overriding.", "required": false},
+        "WORLD_NAME": {"defaultValue": "Railway", "description": "New world display name, 1–40 ASCII letters, numbers, spaces, underscores or hyphens.", "required": false},
+        "WORLD_SIZE": {"defaultValue": "1", "description": "New worlds only: 1 small, 2 medium, 3 large; small uses the least RAM.", "required": false},
+        "DIFFICULTY": {"defaultValue": "0", "description": "New worlds only: 0 classic, 1 expert, 2 master, 3 journey.", "required": false},
+        "MAX_PLAYERS": {"defaultValue": "8", "description": "Maximum concurrent players, 1–32; more players require more RAM and CPU.", "required": false},
+        "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {"defaultValue": "180", "description": "Give the game server time to save its world before shutdown.", "required": false},
+        "RAILWAY_DEPLOYMENT_OVERLAP_SECONDS": {"defaultValue": "0", "description": "Avoid overlapping game processes writing the same world volume.", "required": false}
+      }
+    }
+  },
+  "buckets": []
+}
