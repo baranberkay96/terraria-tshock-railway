@@ -1,5 +1,7 @@
 # Deploy and Host Terraria TShock Server with Railway
 
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/terraria-tshock-server?referralCode=20H68q)
+
 Run a password-protected Terraria 1.4.5.8 world using TShock 6.2.1. This community template exposes the game through Railway's TCP proxy and stores worlds, TShock accounts, configuration, logs and plugins on a persistent volume. The generated server password protects joining; the REST API is disabled.
 
 ## About Hosting Terraria TShock Server
