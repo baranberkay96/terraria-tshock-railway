@@ -47,5 +47,5 @@ At RAM $10/GiB-month, CPU $20/vCPU-month and volume $0.15/GiB-month: idle estima
 
 ## Open questions
 
-- Cloud TCP proxy routing, Railway volume permissions, actual client gameplay and administrator setup require the first Railway deployment; local Docker checks cannot prove the cloud path.
+- Railway public TCP authentication and volume persistence passed pre-publication and published-template checks on 2026-11-21. Full graphical-client gameplay and in-game administrator setup were not exercised.
 - Mobile/console interoperability, plugins and full gameplay are not claimed by the package's protocol authentication test.
